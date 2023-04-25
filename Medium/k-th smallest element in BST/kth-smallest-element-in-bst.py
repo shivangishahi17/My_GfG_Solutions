@@ -81,21 +81,24 @@ class Node:
 
 class Solution:
     # Return the Kth smallest element in the given BST 
-    # S.C.=O(N) and T.C.=O(N)
-    def inorder(self, root):
-        if root:
-            self.inorder(root.left)
-            self.res.append(root.data)
-            self.inorder(root.right)
+    def inorder(self, root, K):
+        if root is None:
+            return
+        self.inorder(root.left, K)
+        if K==self.count:
+            self.res=root.data
+            self.count+=1
+            return 
+        else:
+            self.count+=1
+        self.inorder(root.right, K)
         
     def KthSmallestElement(self, root, K): 
         #code here.
-        self.res=[]
-        self.inorder(root)
-        for i in range(len(self.res)):
-            if K>len(self.res):
-                return -1
-            return self.res[K-1]
+        self.count=1
+        self.res=-1
+        self.inorder(root, K)
+        return self.res
         
 
 #{ 

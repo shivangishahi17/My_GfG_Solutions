@@ -11,6 +11,7 @@ class Node:
 '''
 
 #Function to return a list containing elements of left view of the binary tree.
+
 def traversal(root, level, dict):
     
     # Base condition
@@ -29,10 +30,14 @@ def LeftView(root):
     # code here
     dict={}
     ans=[]
-    traversal(root, 0, dict)
+    level=0
+    traversal(root, level, dict)
     for i in dict:
         ans.append(dict[i])
-    return ans
+    return ans    
+        
+    
+    
     
 
 

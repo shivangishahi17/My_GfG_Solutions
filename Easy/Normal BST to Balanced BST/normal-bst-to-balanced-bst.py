@@ -11,7 +11,7 @@ class Solution:
     def solve(self, start, end):
         # Base case
         if start>end:
-            return None
+            return 
         mid=(start+end)//2
         root=Node(self.res[mid])
         root.left=self.solve(start, mid-1)

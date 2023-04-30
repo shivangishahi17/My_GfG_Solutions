@@ -30,7 +30,7 @@ def deleteNode(root, X):
     else:
         root.left=deleteNode(root.left, X)
      
-    return root        
+    return root   
             
 
 

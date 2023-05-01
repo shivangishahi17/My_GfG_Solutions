@@ -12,26 +12,35 @@ class Node:
 '''
 class Solution:
     #Function to return list containing elements of right view of binary tree.
-    def traversal(self, root, level, dict):
-        if not root:
-            return
-    
-        if level not in dict:
-            dict[level]=root.data
-            
-        self.traversal(root.right, level+1, dict)
-        self.traversal(root.left, level+1, dict)
-    
     def rightView(self,root):
         # code here
-        dict={}
+        
+        if root is None:
+            return []
+        
+        q=deque()
+        q.append(root)
         ans=[]
-        level=0
-        self.traversal(root, level, dict)
-        for i in dict:
-            ans.append(dict[i])
+        
+        
+        while q:
+            n=len(q)
+            i=0
+            while i<n:
+                curr=q.popleft()
+                i=i+1
+                if i==n:
+                    ans.append(curr.data)
+                
+                if curr.left:
+                    q.append(curr.left)
+                if curr.right:
+                    q.append(curr.right)
         return ans
-      
+        
+        
+        
+            
 
 #{ 
  # Driver Code Starts

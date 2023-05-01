@@ -11,7 +11,7 @@ class Solution:
         while queue:
             curr, hd=queue.popleft()
             
-            dict.setdefault(hd,[]).append(curr.data)
+            dict[hd]=curr.data
             
             if curr.left:
                 queue.append((curr.left, hd-1))
@@ -21,12 +21,8 @@ class Solution:
                 
         list1=[]
         for key in sorted(dict.keys()): #key= -1, 0, 1....
-            list1.append(dict[key][-1]) 
-        
-        list2=[]
-        for i in list1:
-            list2.append(i)
-        return list2
+            list1.append(dict[key]) 
+        return list1
         
 
 

@@ -12,29 +12,27 @@ class Node:
 
 #Function to return a list containing elements of left view of the binary tree.
 
-def traversal(root, level, dict):
-    
-    # Base condition
-    if not root:
-        return
-    
-    # level as a key and root as a value
-    if level not in dict:
-        dict[level]=root.data
-        
-    traversal(root.left, level+1, dict)
-    traversal(root.right, level+1, dict)
-    
-    
 def LeftView(root):
     # code here
-    dict={}
+    if root is None:
+        return []
+    
+    q=[root]
     ans=[]
-    level=0
-    traversal(root, level, dict)
-    for i in dict:
-        ans.append(dict[i])
-    return ans    
+    
+    while q:
+        n=len(q)
+        
+        for i in range(1, n+1):
+            curr=q.pop(0)
+            
+            if i==1:
+                ans.append(curr.data)
+            if curr.left:
+                q.append(curr.left)
+            if curr.right:
+                q.append(curr.right)
+    return ans
         
     
     

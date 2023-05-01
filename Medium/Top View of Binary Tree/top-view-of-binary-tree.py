@@ -16,14 +16,15 @@ class Solution:
         # code here
         dict={}
         queue=deque()
-        # because we need to append both horizontal dist and node vale in queue. we are appending both in pair
+        # because we need to append both horizontal dist and node value in queue. we are appending both 
+        # in pair
         queue.append((root,0))
         
         while queue:
             curr,hd=queue.popleft()
             
             if hd not in dict:
-                dict.setdefault(hd,[]).append(curr.data)
+                dict[hd]=curr.data
             
             if curr.left:
                 queue.append((curr.left, hd-1))
@@ -35,12 +36,9 @@ class Solution:
         for key in sorted(dict.keys()): #key= -1, 0, 1....
             list1.append(dict[key]) # [[2] [1] [3]]
         # print(list1) [[2] [1] [3]]
-        list2=[]
+        return list1
         # Because there is a list iside list(elementa are stored in list under list)
-        for i in list1:
-            for j in i:
-                list2.append(j)
-        return list2
+        
         
             
             

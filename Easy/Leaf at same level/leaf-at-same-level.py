@@ -9,7 +9,7 @@ class Solution:
         level=0
         def solve(root, level, s):
             if root is None:
-                return
+                return 
         
             if root.left is None and root.right is None:
                 s.append(level)
@@ -20,6 +20,7 @@ class Solution:
         solve(root, level, s)
         s=set(s)
         return len(s)==1
+            
 
 #{ 
  # Driver Code Starts

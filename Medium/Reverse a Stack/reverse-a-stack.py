@@ -21,9 +21,9 @@ class Solution:
             a=st[-1]
             st.pop()
             self.insertAtBottom(st, temp)
-            
+                    
             st.append(a)
-        
+            return st
         
         
         

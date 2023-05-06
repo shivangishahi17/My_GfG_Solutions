@@ -5,12 +5,16 @@ class Solution:
     def mergeKArrays(self, arr, K):
         # code here
         # return merged list
-        res=[]
-        for i in range(K):
-            for j in range(K):
-                res.append(arr[i][j])
-        res.sort()
-        return res
+        merged = []
+        for i in arr:
+            for j in i:
+                heapq.heappush(merged,j)
+        result=[]
+        while merged:
+            val=heapq.heappop(merged)
+            heapq.heappush(result,val)
+
+        return result
 
 #{ 
  # Driver Code Starts

@@ -14,8 +14,7 @@ class MyQueue:
     def pop(self): 
         if self.q:
             return self.q.pop(0)
-        else:
-            return -1
+        return -1
          
          # add code here
 

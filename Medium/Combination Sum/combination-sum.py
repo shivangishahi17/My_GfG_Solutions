@@ -10,35 +10,35 @@ import sys
 # } Driver Code Ends
 #User function Template for python3
 
+#User function Template for python3
+
 class Solution:
-    def helper(self, arr, target, ans, temp):
+    def helper(self, arr, target, i, ans, temp):
         # Base case
-        if target<0:
+        if i==len(arr):
+            if target==0:
+                ans.append(temp[:])
             return
-        if target==0:
-            ans.append(temp[:])
-            return
-        
-        for i in range(len(arr)):
-            if arr[i]>target:
-                break
-            if i>0 and arr[i]==arr[i-1]:
-                continue
+            
+        if arr[i]<=target:
             # taking
             temp.append(arr[i])
-            self.helper(arr[i:], target-arr[i], ans, temp)
+            self.helper(arr, target-arr[i], i, ans, temp)
             temp.pop()
+        # not taking
+        self.helper(arr, target, i+1, ans, temp)
     
     #Function to return a list of indexes denoting the required 
     #combinations whose sum is equal to given number.
     def combinationalSum(self,A, B):
     
         # code here
-        A.sort()
+        A=list(sorted(set(A)))
         ans=[]
         temp=[]
-        self.helper(A, B, ans, temp)
+        self.helper(A, B, 0, ans, temp)
         return ans
+        
         
 
 #{ 

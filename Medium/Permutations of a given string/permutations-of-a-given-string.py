@@ -6,12 +6,14 @@ class Solution:
         # Code here
         def solve(arr, ans, idx):
             if idx==len(arr):
-                if "".join(arr[:]) not in ans:
-                    ans.append("".join(arr[:]))
+                # condition to check duplicates
+                if "".join(arr) not in ans:
+                    ans.append("".join(arr))
             for i in range(idx, len(arr)):
                 arr[idx], arr[i]=arr[i], arr[idx]
                 solve(arr, ans, idx+1)
                 arr[idx], arr[i]=arr[i], arr[idx]
+                
         ans=[]
         arr=list(S)
         solve(arr, ans, 0)

@@ -5,10 +5,10 @@ class Solution:
     def find_permutation(self, S):
         # Code here
         def solve(arr, ans, idx):
-            if idx==len(S):
+            if idx==len(arr):
                 if "".join(arr[:]) not in ans:
                     ans.append("".join(arr[:]))
-            for i in range(idx, len(S)):
+            for i in range(idx, len(arr)):
                 arr[idx], arr[i]=arr[i], arr[idx]
                 solve(arr, ans, idx+1)
                 arr[idx], arr[i]=arr[i], arr[idx]

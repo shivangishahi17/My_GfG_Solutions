@@ -6,7 +6,6 @@ class Solution:
     def evaluatePostfix(self, S):
         #code here
         stack=[]
-        result=0
         for i in S:
             if i in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']:
                 stack.append(int(i))
@@ -14,15 +13,15 @@ class Solution:
                 op1=stack.pop()
                 op2=stack.pop()
                 
+                if i=='/':
+                    stack.append(op2//op1)
+                if i=='*':
+                    stack.append(op1*op2)
                 if i=='+':
-                    result=op2+op1
-                elif i=='-':
-                    result=op2-op1
-                elif i=='*':
-                    result=op2*op1
-                elif i=='/':
-                    result=op2//op1
-                stack.append(result)
+                    stack.append(op1+op2)
+                if i=='-':
+                    stack.append(op2-op1)
+                # stack.append(result)
         return stack[-1]
                     
 

@@ -4,13 +4,13 @@
 def rev(q):
     #add code here
     # base case
-    queue=[]
+    stack=[]
     while q.qsize()!=0:
-        queue.append(q.get())
+        stack.append(q.get())
     
-    n=len(queue)
-    for i in range(n):
-        q.put(queue[n-i-1])
+
+    while stack:
+        q.put(stack.pop())
     return q
 
     

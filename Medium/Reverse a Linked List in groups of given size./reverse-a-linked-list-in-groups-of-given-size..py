@@ -15,7 +15,7 @@ class Solution:
         prev=None
         count=0
         
-        while curr and count<k:
+        while curr and count!=k:
             next=curr.next
             curr.next=prev
             prev=curr

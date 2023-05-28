@@ -15,11 +15,12 @@ class Solution:
         # our task is to empty the queue
         while len(queue)!=0:
             curr=queue.pop(0)
-            ans.append(curr.data)
+            # ans.append(curr.data)
             if curr.left!=None:
                 queue.append(curr.left)
             if curr.right!=None:
                 queue.append(curr.right)
+            ans.append(curr.data)
         return ans
 
 

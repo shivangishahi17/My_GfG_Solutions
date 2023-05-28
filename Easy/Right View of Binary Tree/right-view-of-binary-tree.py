@@ -14,21 +14,18 @@ class Solution:
     #Function to return list containing elements of right view of binary tree.
     def rightView(self,root):
         # code here
-        
-        if root is None:
-            return []
-        
-        q=deque()
-        q.append(root)
+        q=[root]
         ans=[]
         
+        if root is None:
+            return ans
         
         while q:
             n=len(q)
-            i=0
-            while i<n:
-                curr=q.popleft()
-                i=i+1
+            
+            for i in range(1, n+1):
+                curr=q.pop(0)
+                
                 if i==n:
                     ans.append(curr.data)
                 

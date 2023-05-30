@@ -10,43 +10,47 @@ class Node:
 class Solution:
     def leftTree(self, root, ans):
         if root is None:
-            return
+            return 
         if root.left:
             ans.append(root.data)
             self.leftTree(root.left, ans)
         elif root.right:
             ans.append(root.data)
             self.leftTree(root.right, ans)
-    def leafNode(self, root, ans):
+            
+            
+    def leaf(self, root, ans):
         if root is None:
             return
-        self.leafNode(root.left, ans)
-        if root.left==None and root.right==None:
+        self.leaf(root.left, ans)
+        if root.left is None and root.right is None:
             ans.append(root.data)
-        self.leafNode(root.right, ans)
+        self.leaf(root.right, ans)
+        
     
     def rightTree(self, root, ans):
         if root is None:
-            return
+            return 
         if root.right:
             self.rightTree(root.right, ans)
             ans.append(root.data)
         elif root.left:
             self.rightTree(root.left, ans)
             ans.append(root.data)
+            
     def printBoundaryView(self, root):
         # Code here
-        ans = []
-        if root == None:
-            return []
-        if root.left == None and root.right == None:
+        ans=[]
+        if root is None:
+            return ans
+        if root.left is None and root.right is None:
             return [root.data]
         ans.append(root.data)
         self.leftTree(root.left, ans)
-        self.leafNode(root, ans)
+        self.leaf(root, ans)
         self.rightTree(root.right, ans)
         return ans
-        
+
 
 
 #{ 

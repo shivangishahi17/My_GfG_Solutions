@@ -5,11 +5,15 @@ class Solution:
     #Function to find sum of weights of edges of the Minimum Spanning Tree.
     def spanningTree(self, V, adj):
         #code here
+        # shradha didi approach
+        # T.C.=O(E.logE)
         cost=0
         visited=[False]*V
         heap=[]
         heapq.heappush(heap, (0, 0))
         
+        # priority queue(heap) ke khali hone ka mtlb hai non-mst ka khali hona. Sare k sare element non mst 
+        # se mst ke andar include ho gye hai.
         while heap:
             wt, node= heapq.heappop(heap)
             if not visited[node]:

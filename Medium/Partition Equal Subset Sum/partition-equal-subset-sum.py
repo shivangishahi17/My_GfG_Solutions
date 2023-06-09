@@ -4,11 +4,11 @@ class Solution:
     def subsetSum(self, arr, n, sum):
         dp=[[False for _ in range(sum+1)] for x in range(n+1)]
         
-        for i in range(sum+1):
-            dp[0][i]=False
-            
         for i in range(n+1):
             dp[i][0]=True
+        
+        for j in range(sum+1):
+            dp[0][i]=False
             
         for i in range(1, n+1):
             for j in range(1, sum+1):

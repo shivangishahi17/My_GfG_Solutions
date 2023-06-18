@@ -5,11 +5,11 @@ class Solution:
         # code here 
         dp=[[0 for _ in range(sum+1)] for x in range(N+1)]
         
-        for i in range(sum+1):
-            dp[0][i]=0
-        
         for i in range(N+1):
             dp[i][0]=1
+            
+        for i in range(sum+1):
+            dp[0][i]=0
             
         for i in range(1, N+1):
             for j in range(1, sum+1):

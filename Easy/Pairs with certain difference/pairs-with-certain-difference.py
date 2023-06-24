@@ -4,16 +4,36 @@ class Solution:
     def maxSumPairWithDifferenceLessThanK(self, arr, N, K): 
         # Your code goes here 
         arr.sort()
-        arr=arr[::-1]
-        sum=0
-        i=0
-        while(i<N-1):
-            if arr[i]-arr[i+1]<K:
-                sum+=arr[i]+arr[i+1]
-                i+=2
-            else:
-                i+=1
-        return sum
+ 
+        # dp[i] denotes the maximum disjoint
+        # pair sum we can achieve using first
+        # i elements
+        dp = [0] * N
+     
+        # if no element then dp value will be 0
+        dp[0] = 0
+     
+        for i in range(1, N):
+         
+            # first give previous value to
+            # dp[i] i.e. no pairing with
+            # (i-1)th element
+            dp[i] = dp[i-1]
+     
+            # if current and previous element
+            # can form a pair
+            if (arr[i] - arr[i-1] < K):
+             
+                # update dp[i] by choosing
+                # maximum between pairing
+                # and not pairing
+                if (i >= 2):
+                    dp[i] = max(dp[i], dp[i-2] + arr[i] + arr[i-1]);
+                else:
+                    dp[i] = max(dp[i], arr[i] + arr[i-1]);
+             
+        # last index will have the result
+        return dp[N - 1]
 
 
 #{ 

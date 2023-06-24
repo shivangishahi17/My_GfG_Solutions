@@ -2,15 +2,19 @@
 class Solution:
 	def maxSumIS(self, Arr, n):
 		# code here
-		lis=[1]*n
-		sumlis=Arr[:]
-		for i in range(1, n):
+		dp=[0 for i in range(n)]
+		for i in range(n):
+		    dp[i]=Arr[i]
+		    
+		for i in range(n):
 		    for j in range(0, i):
-		        if Arr[i]>Arr[j] and lis[i]<lis[j]+1:
-		            lis[i]=lis[j]+1
-		            sumlis[i]=max(sumlis[i], Arr[i]+sumlis[j])
-	    return max(sumlis)
-
+		        if Arr[j]<Arr[i]:
+		            dp[i]=max(dp[i], dp[j]+Arr[i])
+        
+        ma=0
+        for i in range(n):
+            ma=max(ma, dp[i])
+        return ma
 
 #{ 
  # Driver Code Starts

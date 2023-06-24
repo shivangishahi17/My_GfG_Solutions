@@ -21,7 +21,6 @@ class Solution:
         # code here
         dp=[[-1 for i in range(N+1)] for j in range(N+1)]
         i=0
-        j=0
         ma=0
         
         for k in range(N):

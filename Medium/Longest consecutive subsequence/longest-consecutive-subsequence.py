@@ -9,7 +9,7 @@ class Solution:
     def findLongestConseqSubseq(self,arr, N):
         #code here
         s=set()
-        res=0
+        res=1
         
         for i in range(N):
             s.add(arr[i])

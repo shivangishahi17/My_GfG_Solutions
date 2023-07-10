@@ -9,14 +9,16 @@ class Solution:
     	start=0
     	end=m-1
     	
-    	while(start<n and end>=0):
+    	while start<n and end>=0:
     	    if matrix[start][end]<x:
     	        start+=1
     	    elif matrix[start][end]==x:
     	        return 1
     	    else:
     	        end-=1
-    	return 0   
+        return 0
+    	        
+    	
 
 
 

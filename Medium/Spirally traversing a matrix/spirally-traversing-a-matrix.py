@@ -4,42 +4,40 @@ class Solution:
     
     #Function to return a list of integers denoting spiral traversal of matrix.
     def spirallyTraverse(self,matrix, r, c): 
-        # code here 
+        # code here
         res=[]
-        # index of first column
-        left=0
-        # index of first row
         top=0
-        # index of last column
-        right=c-1
-        # index of last row
         bottom=r-1
+        left=0
+        right=c-1
         
-        while(top<=bottom and left<=right):
-            # Traverse right
-            # print first row
+        # if I still have any row and I still have 1 column even then I need to di this left right 
+        # top bottom
+        while top<=bottom and left<=right:
+            # right
             for i in range(left, right+1):
                 res.append(matrix[top][i])
             top+=1
             
-            # Traverse down
-            # print last column
+            # bottom
             for i in range(top, bottom+1):
                 res.append(matrix[i][right])
             right-=1
             
-            # Traverse left
+            # left
             if top<=bottom:
                 for i in range(right, left-1, -1):
                     res.append(matrix[bottom][i])
                 bottom-=1
             
-            # Traverse up
             if left<=right:
                 for i in range(bottom, top-1, -1):
                     res.append(matrix[i][left])
                 left+=1
         return res
+       
+            
+
 
 #{ 
  # Driver Code Starts

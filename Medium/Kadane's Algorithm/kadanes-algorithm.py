@@ -6,14 +6,14 @@ class Solution:
     def maxSubArraySum(self,arr,N):
         ##Your code here
         maxSum=arr[0]
-        currSum=arr[0]
-        for i in range(1, N):
-            currSum=max(arr[i], currSum+arr[i])
+        currSum=0
+        for i in range(N):
+            currSum+=arr[i]
             maxSum=max(maxSum, currSum)
+            if currSum<0:
+                currSum=0
         return maxSum
-            
-            
-
+        
 
 #{ 
  # Driver Code Starts

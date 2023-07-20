@@ -5,25 +5,20 @@ class Solution:
 	# product subarray
 	def maxProduct(self,arr, n):
 		# code here
-		curr_prod=1
-		max_prod=arr[0]
-		
+		prefix=1
+		suffix=1
+		maxProd=float('-inf')
 		for i in range(n):
-		    curr_prod*=arr[i]
-		    max_prod=max(curr_prod, max_prod)
+		    if prefix==0:
+		        prefix=1
+		    if suffix==0:
+		        suffix=1
+		    prefix=prefix*arr[i]
+		    suffix=suffix*arr[n-i-1]
+		    maxProd=max(maxProd, max(prefix, suffix))
+	    return maxProd
 		    
-		    if(curr_prod==0):
-		        curr_prod=1
-        
-        curr_prod=1
-        # Traverse from right
-        for i in range(n-1, -1, -1):
-            curr_prod*=arr[i]
-            max_prod=max(curr_prod, max_prod)
-            
-            if(curr_prod==0):
-                curr_prod=1
-        return max_prod
+
 
 #{ 
  # Driver Code Starts

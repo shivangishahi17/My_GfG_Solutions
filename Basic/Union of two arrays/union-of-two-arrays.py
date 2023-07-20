@@ -5,17 +5,14 @@ class Solution:
     def doUnion(self,a,n,b,m):
         
         #code here
-        s=set()
-        for i in range(n):
-            s.add(a[i])
+        c=set()
+        for i in a:
+            c.add(i)
+        for j in b:
+            c.add(j)
+        
+        return len(c)
             
-        for i in range(m):
-            s.add(b[i])
-            
-        uni=[]
-        for i in s:
-            uni.append(i)
-        return len(uni)
 
 
 #{ 

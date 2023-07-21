@@ -1,29 +1,22 @@
 class Solution:
 	def overlappedInterval(self, Intervals):
 		#Code here
-		#using stack
+        #Brute Force T.C.=O(Nlog N)+O(2*N), S.C.=O(N)
+		n=len(Intervals)
 		Intervals.sort()
-        stack = []
-        # insert first interval into stack
-        stack.append(Intervals[0])
-        for i in Intervals[1:]:
-            # Check for overlapping interval,
-            # if interval overlap
-            #overalapping condition check
-            if i[0] <= stack[-1][-1]: #For eg if 1<=2<=3
-                stack[-1][-1] = max(stack[-1][-1], i[1])
-            else:
-                stack.append(i)
-        return stack
-            
-            
-        
-        
-        
-
-		        
-
-
+		res=[]
+        for i in range(n):
+            start=Intervals[i][0]
+            end=Intervals[i][1]
+            if len(res)!=0 and end<=res[-1][1]:
+                continue
+            for j in range(i+1, n):
+                if Intervals[j][0]<=end:
+                    end=max(end, Intervals[j][1])
+                else:
+                    break
+            res.append([start, end])
+        return res
 #{ 
  # Driver Code Starts
 		

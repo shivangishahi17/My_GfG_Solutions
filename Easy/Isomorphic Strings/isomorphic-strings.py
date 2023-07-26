@@ -4,6 +4,7 @@ class Solution:
     
     #Function to check if two strings are isomorphic.
     def areIsomorphic(self,str1,str2):
+        # T.C.=O(N) S.C.=O(N)
         n=len(str1)
         m=len(str2)
         
@@ -22,10 +23,6 @@ class Solution:
             dict1[c1]=c2
             dict2[c2]=c1
         return True
-        
-
-            
-                
 
 
 #{ 

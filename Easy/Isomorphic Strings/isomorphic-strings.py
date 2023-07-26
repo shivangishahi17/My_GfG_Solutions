@@ -4,27 +4,24 @@ class Solution:
     
     #Function to check if two strings are isomorphic.
     def areIsomorphic(self,str1,str2):
-        # T.C.=O(N) S.C.=O(N)
-        n=len(str1)
-        m=len(str2)
-        
-        if m!=n:
+        if len(str1)!=len(str2):
             return False
-            
-        dict1={}
-        dict2={}
-        
-        for i in range(n):
-            c1=str1[i]
-            c2=str2[i]
-            
-            if ((c1 in dict1 and dict1[c1]!=c2) or (c2 in dict2 and dict2[c2]!=c1)):
+        charCount = dict()
+        # initially setting c to "a"
+        c = "a"
+        # iterating over str1 and str2
+        for i in range(len(str1)):
+            # if str1[i] is a key in charCount
+            if str1[i] in charCount:
+                c = charCount[str1[i]]
+                if c != str2[i]:
+                    return False
+            # if str2[i] is not a value in charCount
+            elif str2[i] not in charCount.values():
+                charCount[str1[i]] = str2[i]
+            else:
                 return False
-            dict1[c1]=c2
-            dict2[c2]=c1
         return True
-
-
 #{ 
  # Driver Code Starts
 #Initial Template for Python 3

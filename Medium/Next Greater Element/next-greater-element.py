@@ -5,22 +5,19 @@ class Solution:
     def nextLargerElement(self,arr,n):
         #code here
         stack=[]
-        ans=[]
-        for i in range(n-1, -1, -1):
-            while len(stack)>0 and stack[-1]<=arr[i]:
+        ans=[-1]*n
+        #traverse from right to left
+        for i in range(n-1,-1,-1):
+            while len(stack) and stack[-1]<=arr[i]:
                 stack.pop()
-            if len(stack)>0:
-                ans.append(stack[-1])
+            if not len(stack):
+                ans[i]=-1
             else:
-                ans.append(-1)
+                ans[i]=stack[-1]
             stack.append(arr[i])
-        return ans[::-1]
-        
-      
-            
-            
-            
-                
+        return ans
+
+
 #{ 
  # Driver Code Starts
 #Initial Template for Python 3

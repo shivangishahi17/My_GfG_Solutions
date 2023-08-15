@@ -4,25 +4,25 @@ class Solution:
 	def FirstNonRepeating(self, A):
 		# Code here
 		s=''
-		d=OrderedDict()
-		for i in A:
-		    if i not in d:
-		        d[i]=1
-		    else:
-		        d[i]+=1
-		    b=False
-    		for k,v in d.items():
-    		    if v==1:
-    		        s+=k
-    		        b=True
-    		        break
-    	    if b==False:
-    		    s+="#"
-	    return s
+        d=OrderedDict()
+        for i in A:
+            if i not in d:
+                d[i]=1
+            else:
+                d[i]+=1
+            for k,v in d.items():
+                if v==1:
+                    s+=k
+                    break
+            if v>1:
+                s+="#"
+        return s
+		    
 
 
 #{ 
  # Driver Code Starts
+
 #Initial Template for Python 3
 
 if __name__ == '__main__':

@@ -6,23 +6,23 @@ class Solution:
     #Function to return the level order traversal of a tree.
     def levelOrder(self,root ):
         # Code here
-        queue=[root]
         ans=[]
-        
-        # First append root node into the queue
-        # queue.append(root)
-        
-        # our task is to empty the queue
-        while len(queue)!=0:
-            curr=queue.pop(0)
-            # ans.append(curr.data)
-            if curr.left!=None:
-                queue.append(curr.left)
-            if curr.right!=None:
-                queue.append(curr.right)
-            ans.append(curr.data)
+        if root==None:
+            return ans
+        queue=[]
+        queue.append(root)
+        while queue:
+            size=len(queue)
+            for i in range(size):
+                node=queue.pop(0)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                ans.append(node.data)
         return ans
-
+            
+            
 
 #{ 
  # Driver Code Starts

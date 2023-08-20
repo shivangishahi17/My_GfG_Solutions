@@ -11,32 +11,31 @@ class Node:
 '''
 
 #Function to return a list containing elements of left view of the binary tree.
-
 def LeftView(root):
+    
     # code here
-    if root is None:
-        return []
-    
-    q=[root]
     ans=[]
+    if root is None:
+        return ans
     
-    while q:
-        n=len(q)
+    queue=[]
+    queue.append(root)
+    
+    while queue:
+        n=len(queue)
         
-        for i in range(1, n+1):
-            curr=q.pop(0)
+        for i in range(n):
+            node=queue.pop(0)
             
-            if i==1:
-                ans.append(curr.data)
-            if curr.left:
-                q.append(curr.left)
-            if curr.right:
-                q.append(curr.right)
+            if i==0:
+                ans.append(node.data)
+            
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+                
     return ans
-        
-    
-    
-    
 
 
 #{ 

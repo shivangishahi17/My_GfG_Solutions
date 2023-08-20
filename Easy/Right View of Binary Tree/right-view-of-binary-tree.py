@@ -13,6 +13,7 @@ class Node:
 class Solution:
     #Function to return list containing elements of right view of binary tree.
     def rightView(self,root):
+        
         # code here
         q=[root]
         ans=[]
@@ -23,10 +24,10 @@ class Solution:
         while q:
             n=len(q)
             
-            for i in range(1, n+1):
+            for i in range(n):
                 curr=q.pop(0)
                 
-                if i==n:
+                if i==n-1:
                     ans.append(curr.data)
                 
                 if curr.left:
@@ -34,10 +35,7 @@ class Solution:
                 if curr.right:
                     q.append(curr.right)
         return ans
-        
-        
-        
-            
+
 
 #{ 
  # Driver Code Starts

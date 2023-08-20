@@ -19,16 +19,17 @@ class Solution:
         while queue:
             # temp for storing every node of each level. for eg:-> 1st level: 1; 2nd level: 2, 3 and so on
             temp=[]
-            for i in range(len(queue)):
-                curr=queue.pop(0)
+            size=len(queue)
+            for i in range(size):
+                node=queue.pop(0)
                 
-                if curr.left!=None:
-                    queue.append(curr.left)
+                if node.left!=None:
+                    queue.append(node.left)
             
-                if curr.right!=None:
-                    queue.append(curr.right)
+                if node.right!=None:
+                    queue.append(node.right)
                     
-                temp.append(curr.data)
+                temp.append(node.data)
             # ans.append(temp)
             if level%2==0:
                 temp=temp[::-1]
@@ -38,9 +39,8 @@ class Solution:
             level+=1
             
         return ans
+                
         
-        
-
 
 #{ 
  # Driver Code Starts

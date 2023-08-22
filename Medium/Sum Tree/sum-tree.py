@@ -8,30 +8,32 @@ class Node:
 # your task is to complete this function
 # function should return True is Tree is SumTree else return False
 class Solution:
-    # Code here
-    
     def solve(self, root):
         if root is None:
             return 0
+             
+        if root.left is None and root.right is None:
+            return root.data
             
         left=self.solve(root.left)
         right=self.solve(root.right)
-            
-        if root.left is None and root.right is None:
-            return root.data
-  
-            
+        
         if left+right!=root.data:
             self.res=False
             
         return root.data+left+right
     def isSumTree(self,root):
         # Code here
-        self.res=True
         if root is None:
             return True
+        if root.left is None and root.right is None:
+            return True
+            
+        self.res=True
         self.solve(root)
         return self.res
+
+
 
 #{ 
  # Driver Code Starts

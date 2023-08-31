@@ -5,8 +5,8 @@
 def minValue(root):
     if root is None:
         return None
-        
-    while(root.left is not None):
+    
+    while root.left:
         root=root.left
     return root.data
     
@@ -14,7 +14,13 @@ def deleteNode(root, X):
     # code here.
     if root is None:
         return None
-    if X==root.data:
+        
+    if X<root.data:
+        root.left=deleteNode(root.left, X)
+        
+    elif X>root.data:
+        root.right=deleteNode(root.right, X)
+    else:
         if root.left is None:
             return root.right
         if root.right is None:
@@ -24,15 +30,7 @@ def deleteNode(root, X):
             root.data=minValue(root.right)
             # delete Inorder successor
             root.right=deleteNode(root.right, root.data)
-        
-    if X>root.data:
-        root.right=deleteNode(root.right, X)
-    else:
-        root.left=deleteNode(root.left, X)
-     
-    return root   
-            
-
+    return root
 
 #{ 
  # Driver Code Starts

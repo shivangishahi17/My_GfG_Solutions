@@ -6,14 +6,19 @@ def insert(root, Key):
     # code here
     if root is None:
         return Node(Key)
-    else:
-        if root.data==Key:
-            return root
-        if Key<root.data:
-            root.left=insert(root.left, Key)
-        if Key>root.data:
-            root.right=insert(root.right, Key)
-    return root   
+        
+    if root.data==Key:
+        return root
+    
+    if Key<root.data:
+        root.left=insert(root.left, Key)
+    
+    if Key>root.data:
+        root.right=insert(root.right, Key)
+        
+    return root
+        
+        
 
 
 #{ 

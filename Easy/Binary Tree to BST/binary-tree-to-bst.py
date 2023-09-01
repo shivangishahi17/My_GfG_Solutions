@@ -11,29 +11,30 @@ class Node:
 class Solution:
     # The given root is the root of the Binary Tree
     # Return the root of the generated BST
-    def inorder_bt(self, root):
+    def inorderBT(self, root):
         if root is None:
-            return None
-        self.inorder_bt(root.left)
+            return 
+        self.inorderBT(root.left)
         self.arr.append(root.data)
-        self.inorder_bt(root.right)
-    def inorder_bst(self, root, i):
+        self.inorderBT(root.right)
+    
+    def inorderBST(self, root, i):
         if root is None:
-            return None
-        self.inorder_bst(root.left, i)
+            return 
+        self.inorderBST(root.left, i)
         root.data=self.arr[i[0]]
         i[0]+=1
-        self.inorder_bst(root.right, i)
+        self.inorderBST(root.right, i)
         
     def binaryTreeToBST(self, root):
         # code here
         self.arr=[]
-        self.inorder_bt(root)
+        self.inorderBT(root)
         self.arr.sort()
         i=[0]
-        self.inorder_bst(root, i)
+        self.inorderBST(root, i)
         return root
-        
+
 
 #{ 
  # Driver Code Starts

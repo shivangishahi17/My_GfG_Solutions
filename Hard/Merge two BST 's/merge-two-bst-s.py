@@ -83,25 +83,21 @@ class Solution:
     
     #Function to return a list of integers denoting the node 
     #values of both the BST in a sorted order.
-    def inorder1(self, root1):
-        if root1:
-            self.inorder1(root1.left)
-            self.res.append(root1.data)
-            self.inorder1(root1.right)
-    
-    def inorder2(self, root2):
-        if root2:
-            self.inorder1(root2.left)
-            self.res.append(root2.data)
-            self.inorder1(root2.right)
-            
+    def inorder(self, root):
+        if root is None:
+            return 
+        self.inorder(root.left)
+        self.arr.append(root.data)
+        self.inorder(root.right)
+        
     def merge(self, root1, root2):
         #code here.
-        self.res=[]
-        self.inorder1(root1)
-        self.inorder2(root2)
-        self.res.sort()
-        return self.res
+        self.arr=[]
+        self.inorder(root1)
+        self.inorder(root2)
+        return sorted(self.arr)
+     
+        
 
 #{ 
  # Driver Code Starts.

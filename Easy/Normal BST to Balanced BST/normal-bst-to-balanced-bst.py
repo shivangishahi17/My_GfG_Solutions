@@ -2,31 +2,30 @@
 
 class Solution:
     def inorder(self, root):
-        if root:
-            self.inorder(root.left)
-            self.res.append(root.data)
-            self.inorder(root.right)
+        if root is None:
+            return
+        self.inorder(root.left)
+        self.arr.append(root.data)
+        self.inorder(root.right)
         
-    
-    def solve(self, start, end):
-        # Base case
+    def buildBT(self, start, end):
         if start>end:
-            return 
+            return
         mid=(start+end)//2
-        root=Node(self.res[mid])
-        root.left=self.solve(start, mid-1)
-        root.right=self.solve(mid+1, end)
+        root=Node(self.arr[mid])
+        root.left=self.buildBT(start, mid-1)
+        root.right=self.buildBT(mid+1, end)
         return root
         
+    
     def buildBalancedTree(self,root):
         #code here
-        self.res=[]
+        self.arr=[]
         self.inorder(root)
         start=0
-        end=len(self.res)-1
-        return self.solve(start, end)
-        
-        
+        end=len(self.arr)-1
+        return self.buildBT(start, end)
+
 
 #{ 
  # Driver Code Starts

@@ -82,21 +82,22 @@ class Node:
 
 class Solution:
     def inorder(self, root, arr):
-        if root:
-            self.inorder(root.left, arr)
-            arr.append(root.data)
-            self.inorder(root.right, arr)
+        if root is None:
+            return
+        self.inorder(root.left, arr)
+        arr.append(root.data)
+        self.inorder(root.right, arr)
+        
     def countPairs(self, root1, root2, x): 
         #code here.
-        
         arr1=[]
         arr2=[]
         self.inorder(root1, arr1)
         self.inorder(root2, arr2)
         
-        count=0
-        i=0 
+        i=0
         j=len(arr2)-1
+        count=0
         
         while i<len(arr1) and j>=0:
             if arr1[i]+arr2[j]==x:
@@ -108,7 +109,8 @@ class Solution:
             else:
                 j-=1
         return count
-            
+       
+        
 
 #{ 
  # Driver Code Starts.

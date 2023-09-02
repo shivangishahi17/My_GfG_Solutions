@@ -1,15 +1,37 @@
 # Your task is to complete this function
 # function should return true/false or 1/0
-def solve(root, minValue, maxValue):
+def storeNodes(root, leafNodes, allNodes):
     if root is None:
-        return False
-    if minValue==maxValue:
-        return True
-    return solve(root.left, minValue, root.data-1) or solve(root.right, root.data+1, maxValue)
+        return
+    
+    allNodes.add(root.data)
+    if root.left is None and root.right is None:
+        leafNodes.add(root.data)
+    
+    storeNodes(root.left, leafNodes, allNodes)
+    storeNodes(root.right, leafNodes, allNodes)
     
 def isdeadEnd(root):
     # Code here
-    return solve(root, 1, float('inf'))
+    allNodes=set()
+    leafNodes=set()
+    
+    if root is None:
+        return False
+    
+    allNodes.add(0)
+    storeNodes(root, leafNodes, allNodes) 
+    
+    for i in leafNodes:
+        if i-1 in allNodes and i+1 in allNodes:
+            return True
+    return False
+ 
+    
+ 
+   
+    
+    
         
         
 

@@ -7,15 +7,15 @@ class Solution:
         ##Your code here
         if root is None:
             return 0
-        if l<=root.data<=high:
-            left=self.getCount(root.left,low,high)
-            right=self.getCount(root.right,low,high)
-            return 1+left+right
+        if low<=root.data<=high:
+            return 1+self.getCount(root.left, low, high)+self.getCount(root.right, low, high)
         if root.data<low:
             return self.getCount(root.right, low, high)
         if root.data>high:
-            return self.getCount(root.left, low, high)   
+            return self.getCount(root.left, low, high)
         
+
+
 #{ 
  # Driver Code Starts
 #Initial Template for Python 3

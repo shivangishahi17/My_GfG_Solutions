@@ -17,24 +17,36 @@ class TNode:
 class Solution:
     def sortedListToBST(self, head):
         #code here
-        lis=[]
-        while head:
-            lis.append(head.data)
-            head=head.next
-            
-        def buildTree(lis):
-            if len(lis)==1:
-                return TNode(lis[0])
-            
-            mid=len(lis)//2
-            node=TNode(lis[mid])
-            
-            node.left=buildTree(lis[:mid])
-            if mid+1<len(lis):
-                node.right=buildTree(lis[mid+1:])
-            return node
-            
-        return buildTree(lis)
+        if not head:
+            return None
+
+        def find_middle(head):
+            slow, fast = head, head
+            prev = None
+
+            while fast and fast.next:
+                prev = slow
+                slow = slow.next
+                fast = fast.next.next
+
+            # Disconnect the left half from the middle node
+            if prev:
+                prev.next = None
+
+            return slow
+
+        # Call the find_middle function using 'find_middle'
+        mid = find_middle(head)
+        root = TNode(mid.data)
+
+        if head == mid:  # Only one node in the list
+            return root
+        
+        # recursive approach to construct the left and right subtrees
+        root.left = self.sortedListToBST(head)
+        root.right = self.sortedListToBST(mid.next)
+
+        return root
         
             
 

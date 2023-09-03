@@ -18,19 +18,18 @@
 def removeDuplicates(head):
     #code here
     curr=head
-    if curr is None:
-        return 
-   
-    #To check if the current value is same as the previous value
-    while curr.next!=None:
-        if curr.data==curr.next.data:
-            curr.next=curr.next.next
-        #update current node for the next iteration of the outer loop because we have deleted the duplicates.
+    dummy=Node(-1)
+    prev=dummy
+    
+    while curr:
+        if curr.data==prev.data:
+            prev.next=curr.next
+            curr=curr.next
         else:
+            prev=curr
             curr=curr.next
     return head
-        
-        
+            
 
 
 #{ 

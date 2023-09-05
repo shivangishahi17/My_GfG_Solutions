@@ -14,41 +14,49 @@ class Solution:
     #Function to sort the given linked list using Merge Sort.
     def mergeSort(self, head):
         # Base condition
-        if head is None or head.next is None:
+        if not head or not head.next:
             return head
-       
-        curr=head
+        
+        mid=self.getMiddle(head)
+        secondhalf=mid.next
+        mid.next=None
+        
+        firsthalf=self.mergeSort(head)
+        secondhalf=self.mergeSort(secondhalf)
+        
+        return self.merge(firsthalf, secondhalf)
+        
+    def getMiddle(self, head):
         slow=head
-        fast= head 
-        while fast and fast.next:
-            curr=slow
+        fast=head
+        
+        while fast.next and fast.next.next:
             slow=slow.next
             fast=fast.next.next
-        
-        mid=slow
-        # 
-        curr.next=None
-        
-        left=self.mergeSort(head)
-        right=self.mergeSort(mid)
-        return self.merge(left, right)
-        
+                
+        return slow
+            
     def merge(self, left, right):
         dummy=Node(0)
         prev=dummy
+            
         while left and right:
-            if left.data<=right.data:
+            if left.data<right.data:
                 prev.next=left
                 left=left.next
             else:
                 prev.next=right
                 right=right.next
+                
             prev=prev.next
+            
+        prev.next=None
+            
         if left:
             prev.next=left
-        if right:
+        elif right:
             prev.next=right
-        
+                
         return dummy.next
 
 #{ 

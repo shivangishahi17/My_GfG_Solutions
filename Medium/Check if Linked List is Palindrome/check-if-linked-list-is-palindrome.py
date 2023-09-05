@@ -20,12 +20,34 @@
 class Solution:
     def isPalindrome(self, head):
         #code here
-        S=""
-        curr=head
+        # 1. Find the middle element of the Linked List.
+        slow=head
+        fast=head
+        
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        
+        # 2. Reverse from the middle of the Linked List.
+        curr=slow
+        prev=None
+        
         while curr:
-            S+=str(curr.data)
+            next=curr.next
+            curr.next=prev
+            prev=curr
+            curr=next
+            
+        # 3. Check if it's a palindrome or not.
+        curr=head
+        while prev!=None:
+            if curr.data!=prev.data:
+                return False
             curr=curr.next
-        return S==S[::-1]
+            prev=prev.next
+        return True   
+        
+            
 
 
 #{ 

@@ -1,40 +1,43 @@
 #User function Template for python3
 
 import sys
+from collections import deque
 sys.setrecursionlimit(10**8)
 class Solution:
-    def dfs(self, mat, i, j, vis):
-        if i>=n or j>=m or i<0 or j<0:
-            return 
+    def bfs(self, row, col, vis, grid):
+        n=len(grid)
+        m=len(grid[0])
+        vis[row][col]=1
+        queue=deque()
+        queue.append((row, col))
         
-        if mat[i][j]==0:
-            return 
-        
-        if vis[i][j]==0:
-            vis[i][j]=1
-            self.dfs(mat, i+1, j, vis)
-            self.dfs(mat, i-1, j, vis)
-            self.dfs(mat, i, j+1, vis)
-            self.dfs(mat, i, j-1, vis)
-            self.dfs(mat, i+1, j+1, vis)
-            self.dfs(mat, i+1, j-1, vis)
-            self.dfs(mat, i-1, j+1, vis)
-            self.dfs(mat, i-1, j-1, vis)
+        while queue:
+            row, col=queue.popleft()
+            
+            for delrow in range(-1,2):
+                for delcol in range(-1, 2):
+                    nrow=row+delrow
+                    ncol=col+delcol
+                    if nrow>=0 and nrow<n and ncol>=0 and ncol<m and grid[nrow][ncol]==1 and not vis[nrow][ncol]:
+                        vis[nrow][ncol]=1
+                        queue.append([nrow, ncol])
+                    
+            
         
     def numIslands(self,grid):
         #code here
-        n= len(grid)
-        m = len(grid[0])
-        visited = [[0 for i in range(m)] for j in range(n)]
-        count = 0
-        
-        for i in range(n):
-            for j in range(m):
-                if grid[i][j] == 1 and visited[i][j]==0:
-                    self.dfs(grid, i, j, visited)
-                    count += 1
+        n=len(grid)
+        m=len(grid[0])
+        vis=[[0 for i in range(m)]for j in range(n)]
+        count=0
+        for row in range(n):
+            for col in range(m):
+                if not vis[row][col] and grid[row][col]==1:                    
+                    count+=1
+                    self.bfs(row, col, vis, grid)
         return count
-        
+
+
 #{ 
  # Driver Code Starts
 #Initial Template for Python 3

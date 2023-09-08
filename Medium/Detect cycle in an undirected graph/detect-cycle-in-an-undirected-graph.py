@@ -3,11 +3,12 @@ from collections import deque
 
 class Solution:
     #Function to detect cycle in an undirected graph.
-    def dfs(self, src, adj, visited, parent):
-        visited[src]=1
+    def defect(self, src, adj, vis, parent):
+        vis[src]=1
         for neighbour in adj[src]:
-            if not visited[neighbour]:
-                if self.dfs(neighbour, adj, visited, src):
+            if not vis[neighbour]:
+                vis[neighbour]=1
+                if self.defect(neighbour, adj, vis, src):
                     return True
             else:
                 if parent!=neighbour:
@@ -16,10 +17,10 @@ class Solution:
         
 	def isCycle(self, V: int, adj: List[List[int]]) -> bool:
 		#Code here
-		visited=[0]*V
-        for i in range(V):
-            if not visited[i]:
-                if self.dfs(i, adj, visited, -1):
+		vis=[0]*V
+        for i in range(0, V):
+            if not vis[i]:
+                if self.defect(i, adj, vis, -1):
                     return True
         return False
 

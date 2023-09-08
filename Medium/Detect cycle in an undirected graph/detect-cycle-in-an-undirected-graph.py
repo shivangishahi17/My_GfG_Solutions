@@ -3,29 +3,25 @@ from collections import deque
 
 class Solution:
     #Function to detect cycle in an undirected graph.
-    def defect(self, src, adj, vis):
-        vis[src]=1
-        queue=deque()
-        queue.append((src, -1))
-        
-        while queue:
-            node, parent=queue.popleft()
-            for neighbour in adj[node]:
-                if not vis[neighbour]:
-                    vis[neighbour]=1
-                    queue.append((neighbour, node))
-                elif parent!=neighbour:
+    def dfs(self, src, adj, visited, parent):
+        visited[src]=1
+        for neighbour in adj[src]:
+            if not visited[neighbour]:
+                if self.dfs(neighbour, adj, visited, src):
+                    return True
+            else:
+                if parent!=neighbour:
                     return True
         return False
         
 	def isCycle(self, V: int, adj: List[List[int]]) -> bool:
 		#Code here
-		vis=[0]*V
-		for i in range(0, V):
-		    if not vis[i]:
-		        if self.defect(i, adj, vis):
-		            return True
-		return False
+		visited=[0]*V
+        for i in range(V):
+            if not visited[i]:
+                if self.dfs(i, adj, visited, -1):
+                    return True
+        return False
 
 
 #{ 

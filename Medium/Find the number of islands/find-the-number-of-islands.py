@@ -5,8 +5,6 @@ from collections import deque
 sys.setrecursionlimit(10**8)
 class Solution:
     def bfs(self, row, col, vis, grid):
-        n=len(grid)
-        m=len(grid[0])
         vis[row][col]=1
         queue=deque()
         queue.append((row, col))

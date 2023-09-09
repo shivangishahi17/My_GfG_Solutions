@@ -1,28 +1,35 @@
 class Solution:
-    def dfs(self, node, adj, color, newColor):
-        color[node]=newColor
+    def bfs(self, start, V, adj, color):
+        queue=[]
+        queue.append(start)
+        color[start]=0
         
-        for neighbour in adj[node]:
-            if color[neighbour]==-1:
-                if not self.dfs(neighbour, adj, color, not newColor):
+        while queue:
+            node=queue.pop(0)
+            for i in adj[node]:
+                if color[i]==-1:
+                    color[i]=not color[node]
+                    queue.append(i)
+                elif color[i]==color[node]:
                     return False
-            elif color[neighbour]==color[node]:
-                return False
         return True
-        
 	def isBipartite(self, V, adj):
 		#code here
+		queue=[]
+		queue.append(0)
 		color=[-1]*V
+		for i in range(V):
+		    color[i]=-1
 		
 		for i in range(V):
 		    if color[i]==-1:
-		        if not self.dfs(i, adj, color, 0):
+		        if self.bfs(i, V, adj, color)==False:
 		            return False
 	    return True
 
-
 #{ 
  # Driver Code Starts
+
 if __name__ == '__main__':
 	T=int(input())
 	for i in range(T):

@@ -4,35 +4,32 @@
 class Solution:
     
     #Function to detect cycle in a directed graph.
-    def dfs(self, node, adj, visited, recSt):
-        visited[node]=True
-        recSt[node]=True
-        for neighbour in adj[node]:
-            if not visited[neighbour]:
-                if self.dfs(neighbour, adj, visited, recSt):
-                    return True
-            elif recSt[neighbour]:
-                return True
-        recSt[node]=False
-        return False
-            
-            
     def isCyclic(self, V, adj):
         # code here
-        visited=[False]*V
-        recSt=[False]*V
+        indegree=[0]*V
         for i in range(V):
-            if not visited[i]:
-                if self.dfs(i, adj, visited, recSt):
-                    return True
-        return False
+            for it in adj[i]:
+                indegree[it]+=1
         
+        queue=[]
+        for i in range(V):
+            if indegree[i]==0:
+                queue.append(i)
         
+        count=0    
+        while queue:
+            node=queue.pop(0)
+            count+=1
+            
+            for it in adj[node]:
+                indegree[it]-=1
+                if indegree[it]==0:
+                    queue.append(it)
         
-                
-                
-    
-                
+        if count==V:
+            return False
+        return True
+            
 
 
 #{ 

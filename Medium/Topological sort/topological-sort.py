@@ -1,28 +1,28 @@
 class Solution:
     
     #Function to return list containing vertices in Topological order.
-    def dfs(self, node, stack, adj, visited):
-        visited[node]=True
+    def dfs(self, node, adj, vis, stack):
+        vis[node]=1
         for neighbour in adj[node]:
-            if not visited[neighbour]:
-                self.dfs(neighbour, stack, adj, visited)
+            if not vis[neighbour]:
+                self.dfs(neighbour, adj, vis, stack)
         stack.append(node)
-                
-                
+        
         
     def topoSort(self, V, adj):
         # Code here
-        visited=[False]*V
+        vis=[0]*V
         stack=[]
+        toposort=[]
         for i in range(V):
-            if not visited[i]:
-                self.dfs(i, stack, adj, visited)
-        ans=[]            
+            if not vis[i]:
+                self.dfs(i, adj, vis, stack)
+        
         while stack:
-            ans.append(stack[-1])
-            stack.pop()
-        return ans
-
+            toposort.append(stack.pop())
+            
+        return toposort
+            
 
 
 #{ 

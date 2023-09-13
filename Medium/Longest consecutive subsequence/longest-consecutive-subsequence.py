@@ -8,21 +8,24 @@ class Solution:
     #Function to return length of longest subsequence of consecutive integers.
     def findLongestConseqSubseq(self,arr, N):
         #code here
-        if len(arr)==0:
-            return 0
-        arr.sort()
-        longest=1
-        lastSmaller=float('-inf')
         count=0
-        for i in range(N):
-            if arr[i]-1==lastSmaller:
+        longest=0
+        arr.sort()
+        v=[]
+        v.append(arr[0])
+        for i in range(1, N):
+            if arr[i]!=arr[i-1]:
+                v.append(arr[i])
+        
+        for i in range(len(v)):
+            if i>0 and v[i]==v[i-1]+1:
                 count+=1
-                lastSmaller=arr[i]
-            elif lastSmaller!=arr[i]:
+            else:
                 count=1
-                lastSmaller=arr[i]
             longest=max(longest, count)
         return longest
+            
+                
 
 
 #{ 

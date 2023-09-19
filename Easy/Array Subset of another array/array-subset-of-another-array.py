@@ -1,27 +1,17 @@
 #User function Template for python3
-    #dict to create count of each element in a1
-    #User function Template for python3
 
 def isSubset( a1, a2, n, m):
     if m>n:
-        return "No"
-    hashmap={}
-    for i in range(n):
-        if a1[i] in hashmap:
-            hashmap[a1[i]]+=1
+        return 'No'
+        
+    a1.sort()
+    a2.sort()
+    for i in a2:
+        if i not in a1:
+            return 'No'
         else:
-            hashmap[a1[i]]=1
-            
-    for i in range(m):
-        if a2[i] not in hashmap or hashmap[a2[i]]==0:
-            return "No"
-        else:
-            hashmap[a2[i]]-=1
-    return "Yes"
-    
-   
-    
-    
+            a1.remove(i)
+    return 'Yes'
     
     
     

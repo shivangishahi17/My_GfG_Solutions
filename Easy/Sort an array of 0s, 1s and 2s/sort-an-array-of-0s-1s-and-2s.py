@@ -3,33 +3,19 @@
 class Solution:
     def sort012(self,arr,n):
         # code here
-        count0=0
-        count1=0
-        count2=0
-        
-        for i in range(n):
-            if arr[i]==0:
-                count0+=1
-            elif arr[i]==1:
-                count1+=1
+        low=0
+        mid=0
+        high=n-1
+        while mid<=high:
+            if arr[mid]==0:
+                arr[low],arr[mid]=arr[mid],arr[low]
+                low=low+1
+                mid=mid+1
+            elif arr[mid]==1:
+                mid=mid+1
             else:
-                count2+=1
-        
-        i=0
-        while(count0>0):
-            arr[i]=0
-            i+=1
-            count0-=1
-            
-        while(count1>0):
-            arr[i]=1
-            i+=1
-            count1-=1
-            
-        while(count2>0):
-            arr[i]=2
-            i+=1
-            count2-=1
+                arr[mid],arr[high]=arr[high],arr[mid]
+                high=high-1
         return arr
 
 

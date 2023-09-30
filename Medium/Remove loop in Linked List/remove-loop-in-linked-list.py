@@ -21,7 +21,6 @@ class Solution:
         slow=head
         fast=head
         
-        # To check if there exists a loop in the Linked List
         while slow and fast and fast.next:
             slow=slow.next
             fast=fast.next.next
@@ -29,31 +28,18 @@ class Solution:
             if(slow==fast):
                 break
         
-        if slow==head:
-            while fast.next!=slow:
-                fast=fast.next
-            fast.next=None
-        
-        # starting point of the loop  
-        elif slow==fast:
-            slow=head
-            while slow.next!=fast.next:
-                slow = slow.next
-                fast = fast.next
-            fast.next = None    
-        
-        
-        
-        
+        if slow!=fast:
+            return
+          
+        slow=head
+        while(slow!=fast):
+            slow=slow.next
+            fast=fast.next
             
+        while slow.next!=fast:
+            slow=slow.next
+        slow.next = None    
             
-            
-    
-            
-        
-                    
-
-
 #{ 
  # Driver Code Starts
 # driver code:

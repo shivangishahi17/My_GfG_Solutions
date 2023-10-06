@@ -1,44 +1,43 @@
 #User function Template for python3
 
 class Solution:
+    def solve(self, i, j, m, n, ans, move, vis):
+        if i==n-1 and j==n-1:
+            ans.append(move)
+            return
+        
+        if i+1<n and not vis[i+1][j] and m[i+1][j]==1:
+            vis[i][j]=1
+            self.solve(i+1, j, m, n, ans, move+"D", vis)
+            vis[i][j]=0
+            
+        if j-1>=0 and not vis[i][j-1] and m[i][j-1]==1:
+            vis[i][j]=1
+            self.solve(i, j-1, m, n, ans, move+"L", vis)
+            vis[i][j]=0
+            
+        if j+1<n and not vis[i][j+1] and m[i][j+1]==1:
+            vis[i][j]=1
+            self.solve(i, j+1, m, n, ans, move+"R", vis)
+            vis[i][j]=0
+        
+        
+        if i-1>=0 and not vis[i-1][j] and m[i-1][j]==1:
+            vis[i][j]=1
+            self.solve(i-1, j, m, n, ans, move+"U", vis)
+            vis[i][j]=0
+            
     def findPath(self, m, n):
         # code here
         ans=[]
-        def isSafe(m, visited, n, scrx, scry):
-            if(scrx>=0 and scry>=0 and scrx<n and scry<n and m[scrx][scry]==1 and visited[scrx][scry]!=1):
-                return True
-            else:
-                return False
-       
-        def helper(m, visited, temp, n, scrx, scry):
-            if scrx==n-1 and scry==n-1:
-                ans.append(temp)
-                return
-            visited[scrx][scry]=1
-            
-            if isSafe(m, visited, n, scrx+1, scry):
-                helper(m, visited, temp+"D", n, scrx+1, scry)
-            
-            if isSafe(m, visited, n, scrx, scry-1):
-                helper(m, visited, temp+"L", n, scrx, scry-1)
-                
-            if isSafe(m, visited, n, scrx, scry+1):
-                helper(m, visited, temp+"R", n, scrx, scry+1)
-                
-            if isSafe(m, visited, n, scrx-1, scry):
-                helper(m, visited, temp+"U", n, scrx-1, scry)
-            
-            visited[scrx][scry]=0
+        move=""
+        vis=[[0 for i in range(n)] for j in range(n)]
         if m[0][0]==0:
-            return [-1]
-        visited=[]
-        for i in range(n):
-            col=[]
-            for j in range(n):
-                col.append(0)
-            visited.append(col)
-        helper(m, visited, "", n, 0, 0)
+            return []
+        if m[0][0]==1:
+            self.solve(0, 0, m, n, ans, "", vis)
         return ans
+
 
 #{ 
  # Driver Code Starts

@@ -1,26 +1,29 @@
 #User function Template for python3
+
+
 #Function to determine if graph can be coloured with at most M colours such
 #that no two adjacent vertices of graph are coloured with same colour.
 def graphColoring(graph, k, V):
+    
     #your code here
     def isSafe(graph, color, V, node, col):
         for k in range(V):
             if (graph[node][k]==1 and color[k]==col):
                 return False
         return True
-    def helper(graph, V, k, node):
+    def solve(graph, V, k, node):
         if node==V:
             return True
-        for i in range(k):
+        for i in range(1, k+1):
             if isSafe(graph, color, V, node, i):
                 color[node]=i
-                if helper(graph, V, k, node+1):
+                if solve(graph, V, k, node+1):
                     return True
                 # Backtrack
-                color[node]=-1
+                color[node]=0
         return False
-    color=[-1]*V
-    return helper(graph, V, k, 0)
+    color=[0]*V
+    return solve(graph, V, k, 0)
 
 
 #{ 

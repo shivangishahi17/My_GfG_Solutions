@@ -3,24 +3,25 @@
 class Solution:
     def isKPartitionPossible(self, a, k):
         #code here
-        if(sum(a)%k!=0):return False
-        target=sum(a)//k
-        used=[False for i in range(len(a))]
+        n=len(a)
+        target=sum(a)/k
+        subSets=[0]*k
         
-        def backtrack(index,k,subsetSum):
-            if(k==0):
+        def recurse(ind):
+            if ind==n:    
                 return True
-            if(subsetSum==target):
-                return backtrack(0,k-1,0)
-            for j in range(index,len(a)):
-                if(used[j]==True or subsetSum+a[j]>target):
-                    continue
-                used[j]=True
-                if(backtrack(index+1,k,subsetSum+a[j])):
-                    return True
-                used[j]=False
+
+            for j in range(k):
+                if subSets[j]+a[ind]<=target:
+                    subSets[j]+=a[ind]
+
+                    if recurse(ind+1):
+                        return True
+                    subSets[j]-=a[ind]
+                    if subSets[j]==0:
+                        break
             return False
-        return backtrack(0,k,0)
+        return recurse(0)
 
 
 #{ 

@@ -5,26 +5,22 @@
 class Solution:
     
     #Function to return the diameter of a Binary Tree.
-    def height(self, root):
-        if root is None:
-            return 0
-            
-        leftHeight=self.height(root.left)
-        rightHeight=self.height(root.right)
-        currentDiameter=1+leftHeight+rightHeight   
-        self.diameter=max(self.diameter, currentDiameter)
-        return 1+max(leftHeight, rightHeight) 
-    
     def diameter(self,root):
         # Code here
-        if root is None:
-            return 0
         self.diameter=0
         self.height(root)
         return self.diameter
         
+    def height(self, root):
+        if root is None:
+            return 0
         
-    # T.C.=0(N^2)
+        lh=self.height(root.left)
+        rh=self.height(root.right)
+        self.diameter=max(self.diameter, 1+lh+rh)
+        return 1+max(lh, rh)
+            
+
 
 #{ 
  # Driver Code Starts

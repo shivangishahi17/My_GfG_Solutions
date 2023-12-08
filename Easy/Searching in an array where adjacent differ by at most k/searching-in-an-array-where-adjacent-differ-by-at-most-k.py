@@ -6,9 +6,10 @@ def search (arr, n, x, k) :
     while i<n:
         if arr[i]==x:
             return i
+        
         i=i+max(1, int(abs(arr[i]-x)/k))
     return -1
-    
+
 
 #{ 
  # Driver Code Starts

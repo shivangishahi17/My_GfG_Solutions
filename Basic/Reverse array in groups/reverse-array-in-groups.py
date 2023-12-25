@@ -5,14 +5,11 @@ class Solution:
 	def reverseInGroups(self, arr, N, K):
 		# code here
 		for i in range(0, N, K):
-		    start = i
-		    end = min(i+K-1, N-1)
-		    
-		    while start < end:
-		        arr[start], arr[end] = arr[end], arr[start]
-		        start += 1
-		        end -= 1
-		return arr
+		    if i > N-K:
+		        arr[i:] = reversed(arr[i:])
+		    else:
+		        arr[i:i+K] = reversed(arr[i:i+K])
+	    return arr
 
 
 #{ 
